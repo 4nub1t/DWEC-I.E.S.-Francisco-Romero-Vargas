@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>2. Ejercicio 2 JS: Estructuras de control</h2>
+
+    <h3>2.1. Escribe un programa que verifique si un número es positivo, negativo o cero e imprima
+    el resultado.</h3>
+
+    <p id="ejercicio2_1"></p>
+
+    <script>
+        let numero = 3;
+
+        if (numero > 0) {
+            document.getElementById("ejercicio2_1").innerHTML = "El número " + numero + " es positivo";
+        } else if (numero < 0){
+            document.getElementById("ejercicio2_1").innerHTML = "El número " + numero + " es negativo";
+        } else {
+            document.getElementById("ejercicio2_1").innerHTML = "El número es igual a 0";
+        }
+    
+    
+    </script>
+
+    <h3>2.2. Crea un programa que determine si una persona es menor de edad, adulta o anciana
+    según su edad.</h3>
+
+    <p id="ejercicio2_2"></p>
+
+    <script>
+        let edad = 18;
+
+        if (edad < 18) {
+            document.getElementById("ejercicio2_2").innerHTML = "La persona es menor de edad";
+        } else if (edad > 17 && edad < 80){
+            document.getElementById("ejercicio2_2").innerHTML = "La persona es mayor de edad";
+        } else if (edad > 79){
+            document.getElementById("ejercicio2_2").innerHTML = "La persona es anciana";
+        }
+    </script>
+
+    <h3>2.3. Utiliza un bucle for para imprimir los valores de i desde 0 hasta 4.</h3>
+
+    <p id="ejercicio2_3"></p>
+
+    <script>
+        for (let i = 0; i < 5; i++){
+           document.getElementById("ejercicio2_3").innerHTML += i + "<br>";
+        }
+    </script>
+
+    <h3>2.5. Emplea un bucle do-while para imprimir los valores de x desde 0 hasta 4.</h3>
+
+    <p id="ejercicio2_5"></p>
+
+    <script>
+        let x = 0;
+        
+        do{
+            document.getElementById("ejercicio2_5").innerHTML += x + "<br>";
+            x++;
+        } while (x < 5);
+    </script>
+
+    <h3>2.6. Crea un bucle for que se detenga cuando i sea igual a 3 usando la instrucción break.</h3>
+
+    <p id="ejercicio2_6"></p>
+
+    <script>
+        for (let i = 0 ; i < 3;i++) {
+            if (i == 3){
+                break
+            }
+            document.getElementById("ejercicio2_6").innerHTML += i + "<br>";
+        }
+    </script>
+
+    <h3>2.7. Implementa un bucle for que salte la iteración cuando j sea igual a 2 usando la instrucción continue.</h3>
+
+    <p id="ejercicio2_7"></p>
+
+    <script>
+        for (let i = 0 ; i < 6;i++) {
+            if (i == 2){
+                continue
+            }
+            document.getElementById("ejercicio2_7").innerHTML += i + "<br>";
+        }
+    </script>
+
+    <h3>2.8. Convierte un número del 1 al 12 en el nombre del mes correspondiente. El programa debe solicitar al usuario que ingrese un número del 1 al 12 y luego mostrar el nombre del mes asociado.</h3>
+
+    <p id="ejercicio2_8"></p>
+
+    <script>
+        let num = parseInt(prompt("Introduce un número del 1 al 12:"));
+        let mes;
+
+        switch (num){
+            case 1:
+                mes = "Enero";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 2:
+                mes = "Febrero";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 3:
+                mes = "Marzo";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 4:
+                mes = "Abril";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 5:
+                mes = "Mayo";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 6:
+                mes = "Junio";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 7:
+                mes = "Julio";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 8:
+                mes = "Agosto";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 9:
+                mes = "Septiembre";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 10:
+                mes = "Octubre";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 11:
+                mes = "Noviembre";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            case 12:
+                mes = "Diciembre";
+                document.getElementById("ejercicio2_8").innerHTML += mes;
+                break
+            default:
+                document.getElementById("ejercicio2_8").innerHTML += "Número no válido";
+                break
+        }
+    </script>
+</body>
+</html>
+    
+    
+    
+    
+    

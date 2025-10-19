@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 JS</title>
+</head>
+<body>
+    <h2>Ejercicio 3 JS: Funciones</h2>
+
+    <h3>3.1. Escribe un programa que solicite al usuario el radio de un círculo y luego calcule y
+    muestre el área y el perímetro del círculo</h3>
+    
+    <p id="ejercicio3_1"></p>
+    <p id="ejercicio3_1-2"></p>
+
+    <label for="radio">Ingrese el radio del círculo:<br>
+        <input type="text" id="radio">
+    </label>
+
+    <button id="btnclick">Envíar</button>
+
+    <script>
+        document.getElementById("btnclick").addEventListener("click",function(){
+            let radio = parseFloat(document.getElementById("radio").value);
+
+            function calcular_area(r){
+                return Math.PI * (r ** 2);
+            }
+
+            function calcular_perimetro(r){
+                return 2 * Math.PI * r
+            }
+
+            document.getElementById("ejercicio3_1").innerHTML = "Área del círculo: " + calcular_area(radio);
+
+            document.getElementById("ejercicio3_1-2").innerHTML = "Perímetro del círculo: " + calcular_perimetro(radio);
+        });
+    </script>
+
+
+    <h3>3.2. Escribe una función llamada calculatePower que tome dos parámetros: base y exponent. Esta función debe calcular y devolver el resultado de elevar la base al exponente.</h3>
+    
+    <p id="ejercicio3_2"></p>
+
+    <script>
+        function calculatePower(b,e){
+            return b ** e
+        }
+
+        let result = calculatePower(2,3);
+
+        document.getElementById("ejercicio3_2").innerHTML = "Resultado: " + result;
+    </script>
+</body>

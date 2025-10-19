@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+
+<body>
+    <h2>4. Ejercicio 4 JS: Arrays</h2>
+
+    <h3>4.1. Crea un programa que solicite al usuario ingresar una lista de números y luego encuentre el número más
+        grande en esa lista.</h3>
+
+    <p id="ejercicio4_1"></p>
+
+    <script>
+
+        let cantidad = parseInt(prompt("Ingrese la cantidad de números que quiere introducir: "));
+
+        let lista = [];
+        for (let i = 1;i<cantidad+1;i++){
+            let numero = parseInt(prompt("Ingrese el número " + i + ": "));
+            lista.push(numero);
+        }
+
+        function findLargestNumber(lista){
+            let mayor = lista[0];
+            for (let i = 0;i < lista.length;i++){
+                if (lista[i] > mayor){
+                    mayor = lista[i];
+                }
+            }
+            return mayor;
+        }
+        
+        document.getElementById("ejercicio4_1").innerHTML = "Número mayor: " + findLargestNumber(lista);
+        
+        console.log(findLargestNumber(lista));
+    </script>
