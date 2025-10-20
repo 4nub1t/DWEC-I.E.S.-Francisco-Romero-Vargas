@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>math_random</title>
+</head>
+<body>
+    <h1>Ejercicios con Math.random() en JavaScript</h1>
+
+    <h2>1. Número aleatorio entre 0 y 10 (sin incluir el 10)</h2>
+    <p id="ejercicio1"></p>
+    <script>
+        document.getElementById("ejercicio1").innerHTML = "Ejercicio 1: " + Math.floor(Math.random() * 10);  
+    </script>
+
+    <h2>2. Número aleatorio entre 1 y 10 (ambos inclusive)</h2>
+    <p id="ejercicio2"></p>
+    <script>
+        document.getElementById("ejercicio2").innerHTML = "Ejercicio 2: " + Math.floor(Math.random() * 10 + 1);
+    </script>
+    
+    <h2>3. Número aleatorio entre un mínimo y un máximo (ambos inclusive)</h2>
+    <p id="ejercicio3"></p>
+    <script>
+        document.getElementById("ejercicio3").innerHTML = "Ejercicio 3: " + Math.floor(Math.random() * (30 - 20 + 1) + 20);
+    </script>
+
+    <h2>4. Simular el lanzamiento de un dado</h2>
+    <p id="ejercicio4"></p>
+    <script>
+        document.getElementById("ejercicio4").innerHTML = "Te ha salido " + Math.floor(Math.random() * (6 - 1 + 1) + 1);
+    </script>
+
+    <h2>5. Obtener una letra aleatoria de una cadena</h2>
+    <p id="ejercicio5"></p>
+    <script>
+        let cadena = "Hola soy Luis";
+        let cadena_sin_espacios = cadena.replaceAll(" ","");
+        let maximo = cadena_sin_espacios.length - 1;
+        let minimo = 0;
+        let numero_random = Math.floor(Math.random() * (maximo - minimo + 1) + minimo);
+
+        document.getElementById("ejercicio5").innerHTML = "Letra: " + cadena_sin_espacios[numero_random];
+    </script>
+
+        
+</body>
+</html>
