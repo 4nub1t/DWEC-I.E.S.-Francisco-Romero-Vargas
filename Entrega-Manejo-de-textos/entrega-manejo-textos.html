@@ -120,16 +120,18 @@
         texto = "hola mi nombre es Luis";
 
         function mayuscula_primera_letra(cadena){
+            lista = cadena.split(" ");
             nueva_cadena = "";
-            for (let i = 0; i < cadena.length; i++){
-                if (i === 0){
-                    nueva_cadena += cadena[i].toUpperCase();
+            
+            for (palabra of lista){
+                for (let i = 0; i < palabra.length; i++){
+                    if (i === 0){
+                        palabra[i] = palabra[i].toUpperCase();
+                    }
                 }
-                else{
-                    nueva_cadena += cadena[i];
-                }
+                nueva_cadena += palabra;
             }
-            return nueva_cadena;
+            return nueva_cadena;    
         };
 
         document.getElementById("ejercicio-6").innerHTML = mayuscula_primera_letra(texto);
