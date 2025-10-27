@@ -123,13 +123,9 @@
             lista = cadena.split(" ");
             nueva_cadena = "";
             
-            for (palabra of lista){
-                for (let i = 0; i < palabra.length; i++){
-                    if (i === 0){
-                        palabra[i] = palabra[i].toUpperCase();
-                    }
-                }
-                nueva_cadena += palabra;
+            for (let palabra of lista){
+                palabra = palabra[0].toUpperCase() + palabra.slice(1);
+                nueva_cadena += palabra + " ";
             }
             return nueva_cadena;    
         };
