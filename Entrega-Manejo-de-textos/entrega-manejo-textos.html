@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de textos</title>
+</head>
+<body>
+    <h1>EJERCICIOS DE MANEJO DE TEXTOS EN JAVASCRIPT BÁSICO</h1>
+    <h2>1. Invertir una cadena. Usar una función a la que se le pase un texto como parámetro. Usar un bucle for.</h2>
+
+    <p id="ejercicio-1"></p>
+    <script>
+        cadena = "micadena";
+
+        function invertir_cadena(cadena){
+            nueva_cadena = "";
+            for (let i = cadena.length - 1; i >= 0; i--){
+                nueva_cadena += cadena[i];
+            }
+            return nueva_cadena
+        };
+
+        document.getElementById("ejercicio-1").innerHTML = invertir_cadena(cadena);
+    </script>
+
+    <h2>2. Contar cuántas veces aparece una letra en un texto como parámetro. Usar un bucle for.</h2>
+
+    <p id="ejercicio-2"></p>
+
+    <script>
+        l = "a";    
+        texto = "Made by Anub1t"
+
+        function contar_letra(letra,cadena){
+            contador = 0;
+            for (caracter of cadena){
+                if (caracter === letra)
+                contador += 1;
+            }
+            return contador;
+        };
+
+        document.getElementById("ejercicio-2").innerHTML = contar_letra(l,texto);
+    </script>
+
+    <h2>3. Detectar si un texto es un palíndromo. Un palíndromo es una palabra o frase que suena igual leyéndola hacia adelante que hacia atrás (de manera invertida, comenzando desde la última letra de la frase). Usar una función a la que se le pase un texto como parámetro.</h2>
+
+    <p id="ejercicio-3"></p>
+
+    <script>
+        cadena = '"Somos o no somos"';
+
+        function es_palindroma(cadena){
+            nueva_cadena = "";
+            for (let i = cadena.length - 1; i >= 0; i--){
+                nueva_cadena += cadena[i];
+            }
+            
+            if (nueva_cadena.toLowerCase().replaceAll(" ","") === cadena.toLowerCase().replaceAll(" ","")){
+                return "El texto " + cadena + " es palíndromo"
+            }
+            else{
+                return "El texto " + cadena + " no es palíndromo"
+            }    
+        };
+
+        document.getElementById("ejercicio-3").innerHTML = es_palindroma(cadena);
+    </script>
+
+    <h2>4. Contar las vocales en un texto. Usar una función a la que se le pase un texto como parámetro. Usar un bucle for.</h2>
+
+    <p id="ejercicio-4"></p>
+
+    <script>
+        texto = "Hola soy Anub1t"
+
+        function contar_vocales(cadena){
+            vocales = "aeiou";
+            contador = 0;
+            for (letra of cadena){
+                for (vocal of vocales){
+                    if (letra === vocal){
+                        contador += 1;
+                    }
+                }
+            }
+            return contador;
+        };
+
+        document.getElementById("ejercicio-4").innerHTML = "Número de vocales: " + contar_vocales(texto);
+    </script>
+
+
+    <h2>5. Reemplazar una palabra en una frase. Usar una función a la que se le pase un texto como parámetro. Usar un bucle for.</h2>
+
+    <p id="ejercicio-5"></p>
+
+    <script>
+        frase = "Hola soy Luis";
+
+        palabra_reemplazar = "Anub1t";
+
+        palabra_reemplazada = "Luis";
+        
+
+        function reemplazar_palabra(cadena,palabra_reemplazar, palabra_reemplazada){
+            nueva_cadena = cadena.replace(palabra_reemplazada,palabra_reemplazar);
+            return nueva_cadena;
+        };
+
+        document.getElementById("ejercicio-5").innerHTML = "Antigua cadena: " + frase + "<br>Nueva cadena: " + reemplazar_palabra(frase,palabra_reemplazar,palabra_reemplazada);
+    </script>
+
+    <h2>6. Poner en mayúscula la primera letra de cada palabra. Usar una función a la que se le pase un texto como parámetro. Usar un bucle for.</h2>
+
+    <p id="ejercicio-6"></p>
+
+    <script>
+        texto = "hola mi nombre es Luis";
+
+        function mayuscula_primera_letra(cadena){
+            nueva_cadena = "";
+            for (let i = 0; i < cadena.length; i++){
+                if (i === 0){
+                    nueva_cadena += cadena[i].toUpperCase();
+                }
+                else{
+                    nueva_cadena += cadena[i];
+                }
+            }
+            return nueva_cadena;
+        };
+
+        document.getElementById("ejercicio-6").innerHTML = mayuscula_primera_letra(texto);
+    </script>
+
+    <h2>7. Contar cuántas veces una letra aparece en una palabra usando charAt(). Usar una función a la que se le pase un texto como parámetro. Usar un bucle for.</h2>
+
+    <p id="ejercicio-7"></p>
+
+    <script>
+        palabra = "Luis";
+        letra = "u";
+
+        function letra_en_palabra(palabra,letra){
+            contador = 0;
+            for (let i = 0; i < palabra.length; i++){
+                if (letra === palabra.charAt(i)){
+                    contador += 1;
+                }
+            }
+            return contador;
+        }
+
+        document.getElementById("ejercicio-7").innerHTML = "La letra " + letra + " aparece " + letra_en_palabra(palabra,letra) + " veces";
+    </script>
+</body>
+</html>
