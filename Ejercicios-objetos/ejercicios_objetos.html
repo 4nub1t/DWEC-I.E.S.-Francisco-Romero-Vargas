@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios Objetos</title>
+</head>
+<body>
+    <h1>EJERCICIOS OBJETOS</h1>
+
+    <h2>1. Hola, objeto</h2>
+
+    <p id="ejercicio1"></p>
+
+    <script>
+        let user = {};
+        user["name"] = "John";
+        user["surname"] = "Smith";
+        user["name"] = "Pete";
+        delete user["name"];
+        document.getElementById("ejercicio1").textContent = JSON.stringify(user,null,2);
+    </script>
+
+    <h2>2. Verificar los vacíos</h2>
+
+    <p id="ejercicio2"></p>
+    <p id="ejercicio2-1"></p>
+
+
+    <script>
+        let objeto = {};
+        let objeto2 = {"name":"John"};
+
+        function isEmpty(obj){
+            for (let clave in obj){
+                return false;
+            }
+            return true;
+        };
+
+        document.getElementById("ejercicio2").innerHTML = isEmpty(objeto);
+        document.getElementById("ejercicio2-1").innerHTML = isEmpty(objeto2);
+    </script>
+
+    <h2>3. Suma de propiedades de un objeto</h2>
+
+    <p id="ejercicio3"></p>
+
+    <script>
+        let salaries = {"John": 100, "Ann": 160, "Pete": 130};
+        let suma = 0;
+
+        contador = 0;
+        for (let clave in salaries){
+            contador += 1
+        }
+
+        if (contador > 0){
+            for (let persona in salaries){
+            suma += salaries[persona];
+        }
+        }
+        else{
+            suma = 0
+        }
+        
+        document.getElementById("ejercicio3").innerHTML = suma;
+    </script>
+
+    <h2>4. Multiplicar propiedades numéricas por 2</h2>
+
+    <p id="ejercicio4"></p>
+
+    <script>
+        let menu = {width: 200, height: 300, title: "Mi menú"};
+
+        function multiplyNumeric(obj){
+            
+            for (let clave in obj){
+                if (typeof obj[clave] === "number"){
+                    obj[clave] = obj[clave] * 2;
+                }
+            }
+        };
+        
+        multiplyNumeric(menu);
+
+        document.getElementById("ejercicio4").textContent = JSON.stringify(menu);
+    </script>
+</body>
+</html>
