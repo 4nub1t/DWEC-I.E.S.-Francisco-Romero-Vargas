@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad2-JS-Basico</title>
+</head>
+<body>
+    <h1>Ejercicios JavaScript básico II: Funciones y estructuras de control</h1>
+    <h2>1. Ejercicio JavaScript: Calculadora de gastos de viaje</h2>
+    <p>Escribe un programa que calcule el coste total de un viaje, incluyendo los gastos de alojamiento, alimentación y entretenimiento.</p>
+    <p>• Solicita al usuario que ingrese los gastos estimados para cada categoría.</p>
+    <p>• Calcula el coste total sumando todos los gastos.</p>
+    <p>• Muestra el coste total al usuario.</p>
+    <p>• Ejemplo de entrada: Gastos de alojamiento: 200.50€, Gastos de alimentación: 150.75€, Gastos de entretenimiento: 100.75€.</p>
+    <p>• Salida esperada: El coste total del viaje es 452.00€.</p>
+    <p>• Tipo de dato: floating point. Precisión: 2 decimales.</p>
+
+    <p>
+        <label> <br> Ingrese un gasto estimado de alojamiento:
+            <input type="text" id="gastoAlojamiento">
+        </label>
+    </p>
+    
+
+    <p>
+        <label>Ingrese un gasto estimado de alimentación:
+            <input type="text" id="gastoAlimentacion">
+        </label>
+    </p>
+    
+
+
+    <p>
+        <label>Ingrese un gasto estimado de entretenimiento: 
+            <input type="text" id="gastoEntretenimiento">
+        </label>
+    </p>
+
+    <button onclick="procesarGastos()">Calcular</button>
+
+    <script>
+        function procesarGastos(){
+            let alojamiento_valor = document.getElementById("gastoAlojamiento").value;
+            let alimentacion_valor = document.getElementById("gastoAlimentacion").value;
+            let entretenimiento_valor = document.getElementById("gastoEntretenimiento").value;
+
+            let alojamiento = parseFloat(alojamiento_valor);
+            let alimentacion = parseFloat(alimentacion_valor);
+            let entretenimiento = parseFloat(entretenimiento_valor);
+
+            if (isNaN(alojamiento) || isNaN(alimentacion) || isNaN(entretenimiento)){
+                alert("Por favor ingrese números válidos en todos los campos.");
+                return;
+            }
+
+            suma_gastos = alojamiento + alimentacion + entretenimiento;
+
+            document.getElementById("ejercicio1").innerHTML = "La suma de los gastos es de " + suma_gastos.toFixed(2) + " €";
+        };
+    </script>
+    <p id="ejercicio1"></p>
+
+    <h2>2. Ejercicio JavaScript: Calculadora edad canina</h2>
+    <p>Crea un programa que convierta la edad de un perro a años humanos.</p>
+    <p>• Solicita al usuario que indique la edad de su perro en años.</p>
+    <p>• Calcula la edad del perro en años humanos multiplicando la edad del perro por 7.</p>
+    <p>• Muestra la edad del perro en años humanos al usuario.</p>
+    <p>• Ejemplo de entrada: Edad del perro: 5 años.</p>
+    <p>• Salida esperada: La edad del perro en años humanos es 35 años.</p>
+    <p>La forma común de estimar la edad canina es multiplicar la edad del perro por 7. Esto se basa en la idea de que un año de vida de un perro equivale aproximadamente a siete años de vida humana en términos de desarrollo y envejecimiento.</p>
+
+    <label>Indique la edad de su perro
+        <input type="text" id="edad_perro">
+    </label>
+    <button onclick="calcular_edad_perro()">Calcular</button>
+
+    <script>
+        function calcular_edad_perro(){
+            let value_edad_perro = document.getElementById("edad_perro").value;
+
+            let edad_perro = parseFloat(value_edad_perro);
+
+            if (isNaN(edad_perro)){
+                alert("Por favor ingrese números válidos en todos los campos.");
+                return;
+            }
+
+            let edad_perro_a_humano = edad_perro * 7;
+
+            document.getElementById("ejercicio2").innerHTML = "La edad del perro en años humanos es " + edad_perro_a_humano + " años";
+        };
+    </script>
+    <p id="ejercicio2"></p>
+
+    <h2>3. Ejercicio JavaScript: Calculadora de IMC (Índice de Masa Corporal)</h2>
+    <p>Crea un programa que calcule el IMC de una persona a partir de su peso y altura.</p>
+    <p>• Solicita al usuario que inserte su peso en kilogramos y su altura en metros.</p>
+    <p>• Calcula el IMC dividiendo el peso entre la altura al cuadrado.</p>
+    <p>• Muestra el IMC calculado al usuario y su clasificación según la tabla de IMC.</p>
+    <p>• Ejemplo de entrada: Peso: 70kg, Altura: 1.75m.</p>
+    <p>• Salida esperada: IMC: 22.86, Clasificación: Normal.</p>
+    <p>• Usa if y else if en la clasificación de los rangos típicos de IMC según peso.</p>
+    <p>El Índice de Masa Corporal (IMC) se calcula dividiendo el peso de una persona en kilogramos entre la altura en metros al cuadrado. El IMC proporciona una estimación de la grasa corporal de una persona y se utiliza comúnmente como un indicador de salud. Los rangos típicos de IMC son: Menor de 18.5: Bajo peso, 18.5 – 24.9: Peso normal, 25 – 29.9: Sobrepeso y 30 o más: Obesidad.</p>
+
+
+    <p><label>Inserta tu peso en kilogramos
+        <input type="text" id="input_kilos">
+    </label></p>
+    <p><label>Inerte su altura en metros
+        <input type="text" id="input_metros">
+    </label></p>
+
+    <button onclick="calcular_IMC()">Calcular</button>
+
+    <script>
+        function calcular_IMC(){
+            let valor_kilos = document.getElementById("input_kilos").value;
+            let valor_metros = document.getElementById("input_metros").value;
+
+            let peso = parseFloat(valor_kilos);
+            let altura = parseFloat(valor_metros);
+
+            if (isNaN(peso) || isNaN(altura)){
+                alert("Por favor ingrese números válidos en todos los campos.");
+                return;
+            }
+
+            let IMC = peso / (altura ** 2);
+
+            if (IMC < 18.5){
+                document.getElementById("ejercicio3").innerHTML = "IMC: " + IMC + ", Clasificación: Bajo peso";
+            }
+            else if (IMC >= 18.5 && IMC <= 24.9){
+                document.getElementById("ejercicio3").innerHTML = "IMC: " + IMC + ", Clasificación: Peso normal";
+            }
+            else if (IMC >= 25 && IMC <= 29.9){
+                document.getElementById("ejercicio3").innerHTML = "IMC: " + IMC + ", Clasificación: Sobrepeso";
+            }
+            else {
+                document.getElementById("ejercicio3").innerHTML = "IMC: " + IMC + ", Clasificación: Obesidad";
+            }
+        };
+    </script>
+    <p id="ejercicio3"></p>
+
+    <h2>4. Ejercicio JavaScript: Calculadora de descuentos</h2>
+
+    <p>Crea un programa que calcule el precio final de un producto después de aplicarle un descuento.</p>
+    <p>• Solicita al usuario que inserte el precio original del producto.</p>
+    <p>• Solicita al usuario que inserte el porcentaje de descuento a aplicar (por ejemplo, 10</p>
+    <p>para un descuento del 10%).</p>
+    <p>• Utiliza una función para calcular el precio final después de aplicar el descuento.</p>
+    <p>• Muestra el precio final al usuario, redondeado a dos decimales.</p>
+    <p>• Ejemplo de entrada: Inserta el precio original del producto: 50, Inserta el porcentaje de descuento a aplicar: 20</p>
+    <p>• Salida esperada: El precio final del producto después de aplicar un descuento del 20% es: 40 euros.</p>
+
+    <p><label>Ingrese el precio original de un producto
+        <input type="text" id="precio_original">
+    </label></p>
+
+    <p><label>Ingrese el porcentaje de descuento a aplicar
+        <input type="text" id="porcentaje_descuento">
+    </label></p>
+
+    <button onclick="calcularDescuento()">Calcular</button>
+    
+    <script>
+        function calcularDescuento(){
+            let valor_precio_original = document.getElementById("precio_original").value;
+            let valor_porcentaje = document.getElementById("porcentaje_descuento").value;
+
+            let precio = parseFloat(valor_precio_original);
+            let porcentaje = parseFloat(valor_porcentaje);
+
+            if (isNaN(precio) || isNaN(porcentaje)){
+                alert("Por favor ingrese números válidos en todos los campos.");
+                return;
+            }
+
+            let precio_final = precio - (precio * porcentaje / 100);
+
+            document.getElementById("ejercicio4").innerHTML = "El precio final del producto después de aplicar un descuento del " + porcentaje + "% es: " + precio_final + " €";
+        };
+    </script>
+    <p id="ejercicio4"></p>
+
+
+    <h2>5. Ejercicio JavaScript: Generador de números primos</h2>
+
+    <p>Escribe un programa que solicite al usuario dos números y luego muestre todos los números primos que hay entre esos dos números, incluyendo los extremos.</p>
+    <p>• Solicita al usuario que ingrese dos números enteros.</p>
+    <p>• Encuentra todos los números primos en el rango entre los dos números insertados, incluyendo esos dos números.</p>
+    <p>• Ejemplo de entrada: Inserta el primer número: 10, Inserta el segundo número: 20.</p>
+    <p>• Salida esperada: Los números primos entre 10 y 20 son: 11, 13, 17, 19.</p>
+    <p>• Usar funciones, if y bucles for.</p>
+    <p>Un número primo es un número natural mayor que 1 que solo es divisible por sí mismo y por 1. En otras palabras, un número primo tiene exactamente dos divisores: 1 y él mismo. Por ejemplo, 2, 3, 5, 7, 11 son algunos ejemplos de números primos, ya que no tienen otros divisores aparte de 1 y ellos mismos</p>
+
+    <p><label>Ingrese un primer número
+        <input type="text" id="primer_numero">
+    </label></p>
+
+    <p><label>Ingrese un segundo número
+        <input type="text" id="segundo_numero">
+    </label></p>
+
+    <button onclick="generarPrimos()">Calcular</button>
+    <script>
+        function generarPrimos(){
+            let valor_primer_numero = document.getElementById("primer_numero").value;
+            let valor_segundo_numero = document.getElementById("segundo_numero").value;
+
+            let numero1 = parseFloat(valor_primer_numero);
+            let numero2 = parseFloat(valor_segundo_numero);
+
+            if (isNaN(numero1) || isNaN(numero2)){
+                alert("Por favor ingrese números válidos en todos los campos.");
+                return;
+            }
+
+            function esPrimo(num){
+                if (num <=1){
+                    return false;
+                }
+
+                contador = 0;
+                for (let i = 2; i < num + 1; i++){
+                    if (num % i == 0){
+                        contador += 1;
+                    }
+                }
+
+                if (contador > 1){
+                    return false;
+                }
+                return true;
+            };
+
+            let listaPrimos = [];
+
+            for (let i = numero1; i < numero2 + 1; i++){
+                if (esPrimo(i) == true){
+                    listaPrimos.push(i);
+                }
+            }
+
+            document.getElementById("ejercicio5").innerHTML = "Los números primos entre " + numero1 + " y " + numero2 + " son: " + listaPrimos;
+        };
+    </script>
+
+    <p id="ejercicio5"></p>
+
+
+    <h2>6. Ejercicio JavaScript: Generador de secuencia Fibonacci</h2>
+
+    <p>Crea un programa que genere los primeros N términos de la secuencia de Fibonacci, donde N es un número insertado por el usuario.</p>
+    <p>• Solicita al usuario que ingrese el número de términos de la secuencia Fibonacci que desea generar.</p>
+    <p>• Utiliza una función para calcular la secuencia de Fibonacci.</p>
+    <p>• Muestra los primeros N términos de la secuencia Fibonacci al usuario.</p>
+    <p>• Ejemplo de entrada: Inserta el número de términos de la secuencia Fibonacci: 8.</p>
+    <p>• Salida esperada: Los primeros 8 términos de la secuencia Fibonacci son: 0, 1, 1, 2, 3, 5, 8, 13.</p>
+    <p>• Usar funciones, if, bucles for, etc.</p>
+    <p>La secuencia de Fibonacci es una serie de números en la que cada número es la suma de los dos números precedentes. Comienza con 0 y 1, y luego cada número subsiguiente es la suma de los dos números anteriores. La secuencia comienza así: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, y así sucesivamente.</p>
+
+    <label>Inserte un número de términos de la secuencia Fibonacci que desea generar:
+        <input type="text" id="num">
+    </label>
+    <button onclick="generar_fibonacci()">Calcular</button>
+
+    <script>
+        function generar_fibonacci(){
+            let num = document.getElementById("num").value;
+            let numero = parseInt(num);
+
+            if (isNaN(numero)){
+                alert("Por favor ingrese números válidos en todos los campos.");
+                return;
+            }
+
+            lista_numeros_fibonacci = [];
+
+            for (let i = 0; i < numero; i++){
+                if (i === 0){
+                    lista_numeros_fibonacci.push(i);
+                }
+                else if (i === 1){
+                    lista_numeros_fibonacci.push(i);
+                }
+                else{
+                    lista_numeros_fibonacci.push((lista_numeros_fibonacci[i-2])+(lista_numeros_fibonacci[i-1]));
+                }
+            }
+
+            document.getElementById("ejercicio6").innerHTML = "Los primeros " + numero + " términos de la secuencia Fibonacci son: " + lista_numeros_fibonacci;
+        };
+    </script>
+
+    
+    <p id="ejercicio6"></p>
+
+
+    <h2>7. Ejercicio JavaScript: Conversor de temperatura</h2>
+
+    <p>Crea un programa que convierta una temperatura de grados Celsius a grados Fahrenheit o viceversa, según la elección del usuario.</p>
+    <p>• Solicita al usuario que elija el tipo de conversión: de Celsius a Fahrenheit o de Fahrenheit a Celsius.</p>
+    <p>• Solicita al usuario que ingrese la temperatura que desea convertir.</p>
+    <p>• Utiliza funciones para realizar las conversiones necesarias.</p>
+    <p>• Muestra el resultado de la conversión al usuario.</p>
+    <p>• Ejemplo de entrada: ¿Qué tipo de conversión deseas realizar? (1 para Celsius a Fahrenheit, 2 para Fahrenheit a Celsius): 1, Inserta la temperatura en grados Celsius: 25</p>
+    <p>• Salida esperada: 25 grados Celsius equivalen a 77 grados Fahrenheit.</p>
+    
+    <p>
+        <label>¿Qué tipo de conversión deseas realizar?(1 para Celsius a
+        Fahrenheit, 2 para Fahrenheit a Celsius):
+            <input type="text" id="factor_conversion">
+        </label>
+    </p>
+
+    <p>
+        <label>Inserta la temperatura:
+            <input type="text" id="temp">
+        </label>
+    </p>
+
+    <p><button onclick="convertir_temperatura()">Convertir</button></p>
+
+    <script>
+        function convertir_temperatura(){
+            let numero = document.getElementById("temp").value;
+            let factor_conversion = document.getElementById("factor_conversion").value;
+            let temperatura = parseFloat(numero);  
+            let factor = parseFloat(factor_conversion);  
+
+            if (isNaN(temperatura) || isNaN(factor)){ 
+                alert("Por favor ingrese números válidos en todos los campos.");
+                return;
+            }
+
+            if (factor === 1){
+                let fahrenheit = (temperatura * 9 / 5) + 32;
+                document.getElementById("ejercicio7").innerHTML = temperatura + " grados Celsius equivalen a " + fahrenheit + " grados Fahrenheit"
+            }
+            else if(factor === 2){
+                let celsius = (temperatura - 32) * 5 / 9;
+                document.getElementById("ejercicio7").innerHTML = temperatura + " grados Fahrenheit equivalen a " + celsius + " grados Celsius"
+            }
+            else{
+                alert("El número " + factor + " no es válido, por favor, repita su elección");
+            }
+        };
+    </script>
+
+    <p id="ejercicio7"></p>
+
+    <h2>8. Ejercicio JavaScript: Calcular factorial</h2>
+
+    <p>Escribe un programa que calcule el factorial de un número entero no negativo ingresado por el usuario.</p>
+    <p>El factorial de un número entero positivo ( n ), denotado como ( n! ), es el producto de todos los enteros positivos desde 1 hasta ( n ). La fórmula para calcular el factorial es ( n! = n x (n-1) x (n-2) x … x 2 x 1 ). Por ejemplo, el factorial de 5 (( 5! )) se calcula como ( 5 x 4 x 3 x 2 x 1 = 120 ).</p>
+    <p>• Define una función llamada calculateFactorial que tome un parámetro number que represente el número del cual se calculará el factorial.</p>
+    <p>• Dentro de la función, utiliza un bucle for para calcular el factorial del número.</p>
+    <p>• Inicializa una variable result en 1, ya que el factorial de 0 y 1 es 1.</p>
+    <p>• Itera desde 1 hasta number, multiplicando cada número por result en cada iteración y almacenando el resultado en result.</p>
+    <p>• Devuelve result al final de la función.</p>
+    <p>• Pide al usuario que ingrese un número entero no negativo.</p>
+    <p>• Convierte la entrada del usuario a un número entero utilizando la función parseInt.</p>
+    <p>• Llama a la función calculateFactorial con el número ingresado por el usuario y muestra el resultado.</p>
+
+    <label>Ingresa un número: 
+        <input type="text" id="numero_input">
+    </label>
+    <button onclick="calcular_factorial()">Calcular</button>
+
+    <script>
+        function calcular_factorial(){
+            let numero = document.getElementById("numero_input").value;
+            let n = parseInt(numero);
+
+            if (isNaN(n)){
+                alert("Introduzca un campo correcto")
+                return;
+            }
+
+            factorial = n;
+
+            for (let i = 1; i < n; i++){
+                factorial *= i;
+            }
+
+            document.getElementById("ejercicio8").innerHTML = "El factorial del número " + n + " es igual a " + factorial;
+        };
+    </script>
+    <p id="ejercicio8"></p>
+</body>
+</html>
