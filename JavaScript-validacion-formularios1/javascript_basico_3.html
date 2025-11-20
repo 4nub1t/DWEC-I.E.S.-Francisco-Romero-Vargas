@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="javascript_basico_3.css">
+</head>
+<body>
+    <!-- <h1>LISTA DE EJERCICIOS JAVASCRIPT BÁSICO 3</h1>
+    <h2>1. Diseñar un formulario que cuente con los siguientes campos relativos a un usuario:</h2>
+    <p>- El nombre (no puede estar vacío).</p>
+    <p>- La dirección de correo (debe ser válida).</p>
+    <p>- Una contraseña (de al menos 8 caracteres y que cuente al menos con un dígito).</p>
+    <p>- Repetición de la contraseña (debe coincidir con la anterior, obviamente).</p>
+    <p>- Una operación matemática de suma entre dos números enteros de un dígito determinados al azar (por ej. 5 + 3 = ?) con el fin de solicitar su resultado para evitar “bots”.</p>
+    <p>- Una casilla de verificación de “Acepto las condiciones” inicialmente desactivada. Hasta que esta opción no se verifique no se habilitará el botón de envío.</p>
+    <p>- Un botón de envío con el texto “Crear cuenta”.</p>
+    <p>Los elementos irán validándose de forma individual, de modo que si no es correcto aparecerá un texto en rojo indicando el error y el campo erróneo tomará el foco.</p> -->
+
+    <br>
+
+    <form id="formulario_ejercicio_1" action="procesar.php" method="post" novalidate>
+        <h4>Formulario Datos</h4>
+
+        <p>
+            <label>Nombre <span class="obligatorio">*</span><br>
+                <input type="text" id="nombre_input">
+                <span class="error" id="error_nombre"></span>     
+            </label>
+        </p>
+
+        <p>
+            <label>Correo electrónico <span class="obligatorio">*</span><br>
+                <input type="text" id="correo_input">
+                <span class="error" id="error_correo"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>Contraseña <span class="obligatorio">*</span><br>
+                <input type="text" id="contraseña_input">
+                <span class="error" id="error_contraseña"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>Repita su contraseña <span class="obligatorio">*</span><br>
+                <input type="text" id="repetir_contraseña_input">
+                <span class="error" id="error_repetir_contraseña"></span>
+            </label>
+        </p>
+
+        <p>
+            <label id="suma_label"><br>
+                <span id="pregunta_suma"></span>
+                <input type="text" id="respuesta_suma_input">
+                <span class="error" id="error_suma"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>Acepto las condiciones... <span class="obligatorio">*</span><br>
+                <input type="checkbox" id="condiciones_input">
+            </label>
+        </p>
+
+        <button id="boton_crear_cuenta" type="submit" disabled>Crear cuenta</button>
+    </form>
+    
+    <script>
+        function ValidarDatos(){
+            let form = document.getElementById("formulario_ejercicio_1");
+            let nombre = document.getElementById("nombre_input");
+            let correo = document.getElementById("correo_input");
+            let contraseña = document.getElementById("contraseña_input");
+            let repetir_contraseña = document.getElementById("repetir_contraseña_input");
+            let sumaLabel = document.getElementById('suma_label');
+            let condiciones = document.getElementById("condiciones_input");
+            let boton_enviar = document.getElementById("boton_crear_cuenta");
+            let preguntaSuma = document.getElementById("pregunta_suma");
+            let respuesta_suma = document.getElementById("respuesta_suma_input");
+
+            let errorNombre = document.getElementById("error_nombre");
+            let errorEmail = document.getElementById("error_correo");
+            let errorPassword = document.getElementById("error_contraseña");
+            let errorRepetirPassword = document.getElementById("error_repetir_contraseña");
+            let errorSuma = document.getElementById("error_suma");
+
+            let numero1 = Math.floor(Math.random() * 10);
+            let numero2 = Math.floor(Math.random() * 10);
+            let resultado = numero1 + numero2;
+            preguntaSuma.textContent = `¿Cuánto es ${numero1} + ${numero2}?`;
+
+
+            condiciones.addEventListener('change', function() { 
+                boton_enviar.disabled = !this.checked;
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let valido = true;
+
+                errorNombre.textContent = "";
+                errorEmail.textContent = "";
+                errorPassword.textContent = "";
+                errorRepetirPassword.textContent = "";
+                errorSuma.textContent = "";
+
+                nombre.classList.remove("errorCuadro");
+                correo.classList.remove("errorCuadro");
+                contraseña.classList.remove("errorCuadro");
+                repetir_contraseña.classList.remove("errorCuadro");
+                sumaLabel.classList.remove("errorCuadro");
+
+                
+                if (nombre.value.trim() === ""){
+                    errorNombre.textContent = "El nombre no puede estar vacío";
+                    nombre.classList.add("errorCuadro");
+                    nombre.focus();
+                    valido = false;
+                }
+
+                let exp_reg_correo = /^(.+\@.+\..+)$/;
+                if (!exp_reg_correo.test(correo.value.trim())) {
+                    errorEmail.textContent = "Correo no válido";
+                    correo.classList.add("errorCuadro");
+                    if (valido) correo.focus();
+                    valido = false;
+                }
+
+                let exp_reg_password = /^(?=.*\d).{8,}$/;
+                if (!exp_reg_password.test(contraseña.value)){
+                    errorPassword.textContent = "Debe tener al menos 8 caracteres y un número";
+                    contraseña.classList.add("errorCuadro");
+                    if (valido) contraseña.focus();
+                    valido = false;
+                }
+
+                if (contraseña.value !== repetir_contraseña.value){
+                    errorRepetirPassword.textContent = "Las contraseñas no coinciden";
+                    repetir_contraseña.classList.add("errorCuadro");
+                    if (valido) repetir_contraseña.focus();
+                    valido = false;
+                }
+
+                if (parseInt(respuesta_suma.value) !== resultado) {
+                    errorSuma.textContent = "Resultado incorrecto";
+                    respuesta_suma.classList.add("errorCuadro");
+                    if (valido) respuesta_suma.focus();
+                    valido = false;
+                }
+
+                if (valido){
+                    form.submit();
+                }
+            });
+        }
+
+        ValidarDatos();
+    </script>
+</body>
+</html>

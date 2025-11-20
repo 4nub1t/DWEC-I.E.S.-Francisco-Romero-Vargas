@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ej2_javascript_basico_3.css">
+</head>
+<body>
+    <!-- <h2>2. Diseñar un formulario para solicitar datos de registro de personas de la provincia de Cádiz. El formulario debe solicitar y validar los siguientes campos</h2>
+
+    <p>- Nombre de usuario. Debe tener, al menos, 8 caracteres (no se permiten espacios en blanco).</p>
+    <p>- Contraseña. Debe tener de entre 6 y 10 caracteres alfanuméricos y contar con al menos un dígito y una letra mayúscula.</p>
+    <p>- Población. Lista desplegable de poblaciones que contendrá “ – Seleccione –“, como primera opción, seguida de todos los municipios de la provincia de Cádiz ordenados alfabéticamente. Al menos una de ellas debe estar seleccionada.</p>
+    <p>El formulario se enviará al script “grabar.php” mediante el método más adecuado.</p>
+    <p>Durante la validación se presentará un mensaje en rojo tras cada campo incorrecto un mensaje de la forma “El dato XXXXX debe YYYYY”, siendo XXXXX el nombre del campo erróneo e YYYYY la</p>
+    <p>condición que debe cumplir el dato.</p> -->
+
+
+    <form action="grabar.php" id="formulario">
+        <h4>Formulario datos</h4>
+        <p>
+            <label>Nombre de usuario 
+                <span class="obligatorio">*</span><br>
+                <input type="text" id="nombre_input">
+                <span class="error" id="errorNombre"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>Contraseña
+                <span class="obligatorio">*</span><br>
+                <input type="text" id="contraseña_input">
+                <span class="error" id="errorContraseña"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>Población 
+                <span class="obligatorio">*</span><br>
+                <select id="poblacion_input">
+                    <option value="">– Seleccione –</option>
+                    <option>Alcalá de los Gazules</option>
+                    <option>Alcalá del Valle</option>
+                    <option>Algeciras</option>
+                    <option>Algodonales</option>
+                    <option>Arcos de la Frontera</option>
+                    <option>Barbate</option>
+                    <option>Benalup-Casas Viejas</option>
+                    <option>Benaocaz</option>
+                    <option>Bornos</option>
+                    <option>Cádiz</option>
+                    <option>Castellar de la Frontera</option>
+                    <option>Chiclana de la Frontera</option>
+                    <option>Chipiona</option>
+                    <option>Conil de la Frontera</option>
+                    <option>El Bosque</option>
+                    <option>El Gastor</option>
+                    <option>El Puerto de Santa María</option>
+                    <option>Espera</option>
+                    <option>Grazalema</option>
+                    <option>Jerez de la Frontera</option>
+                    <option>Jimena de la Frontera</option>
+                    <option>La Línea de la Concepción</option>
+                    <option>Los Barrios</option>
+                    <option>Medina Sidonia</option>
+                    <option>Olvera</option>
+                    <option>Paterna de Rivera</option>
+                    <option>Prado del Rey</option>
+                    <option>Puerto Real</option>
+                    <option>Puerto Serrano</option>
+                    <option>Rota</option>
+                    <option>San Fernando</option>
+                    <option>San José del Valle</option>
+                    <option>San Roque</option>
+                    <option>Sanlúcar de Barrameda</option>
+                    <option>Setenil de las Bodegas</option>
+                    <option>Tarifa</option>
+                    <option>Torre Alháquime</option>
+                    <option>Ubrique</option>
+                    <option>Vejer de la Frontera</option>
+                    <option>Villaluenga del Rosario</option>
+                    <option>Villamartín</option>
+                    <option>Zahara de la Sierra</option>
+                </select>
+                <span class="error" id="errorPoblacion"></span>
+            </label>
+        </p>
+
+        <p>
+            <button id="boton_crear_cuenta" type="submit">Crear cuenta</button>
+        </p>
+    </form>
+     
+    <script>
+        function ValidarDatos(){
+            const form = document.getElementById("formulario")
+            const nombre = document.getElementById("nombre_input")
+            const contraseña = document.getElementById("contraseña_input")
+            const poblacion = document.getElementById("poblacion_input")
+            const boton = document.getElementById("boton_crear_cuenta")
+
+            const error_nombre = document.getElementById("errorNombre")
+            const error_contraseña = document.getElementById("errorContraseña")
+            const error_poblacion = document.getElementById("errorPoblacion")
+        
+
+            form.addEventListener('submit',function(e){
+                e.preventDefault();
+                let valido = true;
+
+                error_nombre.textContent = "";
+                error_contraseña.textContent = "";
+                error_poblacion.textContent = "";
+
+                nombre.classList.remove("error_cuadro");
+                contraseña.classList.remove("error_cuadro");
+                poblacion.classList.remove("error_cuadro")
+
+                const exp_reg_nombre = /^\S{8,}$/;
+                if (exp_reg_nombre.test(nombre.value) == false){
+                    if (valido){
+                        nombre.focus();
+                    }
+                    nombre.classList.add("error_cuadro");
+                    error_nombre.textContent = "Debe tener al menos 8 caracteres (no se permiten espacios en blanco)";
+                    valido = false;
+                } else {
+                    nombre.classList.remove("error_cuadro");
+                    nombre.blur();
+                }
+                
+                const exp_reg_contraseña = /^(?=.*\d)(?=.*[A-Z])\w{6,10}$/;
+
+                if (!exp_reg_contraseña.test(contraseña.value)){
+                    if (valido){
+                        contraseña.focus();
+                    }
+                    contraseña.classList.add("error_cuadro");
+                    error_contraseña.textContent = "Debe tener de entre 6 y 10 caracteres alfanuméricos y contar con al menos un dígito y una letra mayúscula";
+                    valido = false;
+                } else {
+                    contraseña.classList.remove("error_cuadro");
+                    contraseña.blur();
+                } 
+
+                if (poblacion.value === ""){
+                    if (valido){
+                        poblacion.focus();
+                    }
+                    poblacion.classList.add("error_cuadro");
+                    error_poblacion.textContent = "Seleccione al menos una población";
+                    valido = false;
+                } else{
+                    poblacion.classList.remove("error_cuadro");
+                    poblacion.blur();
+                }
+
+                if (valido){
+                    form.submit();
+                }
+            });
+        } 
+        ValidarDatos()
+    </script>
+</body>
+</html>
